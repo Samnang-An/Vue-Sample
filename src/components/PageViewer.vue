@@ -9,10 +9,6 @@ export default{
     props:['index'],
     created(){
         this.page = this.$page.getSinglePage(this.index);
-
-        // this.$watch(()=>this.$route.params, (newParams,prevParams)=>{
-        //     this.page = this.$page.getSinglePage(newParams.index);
-        // })
     },
     watch:{
         index(newIndex,prevIndex){

@@ -5,7 +5,6 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <navbar-link 
                     v-for="(page, index) in publishedPage" class="nav-item" :key="index"
-                    :is-active="index === activePage"
                     :page="page"
                     :index="index"
                     @actived="$emit('activated')"
@@ -14,6 +13,7 @@
                     <router-link 
                         to="/create"    
                         class="nav-link"
+                        active-class="active emphasize"
                         aria-current="page" 
                     >Create Page</router-link>
                 </li>
@@ -32,14 +32,15 @@ export default{
     components: {
         NavbarLink
     },
-    props:[`pages`,`activePage`],
     data() {
         return {
-            theme: 'dark'
+            theme: 'dark',
+            pages: []
         }
     },
     created(){
         this.getThemeSetting();
+        this.pages = this.$page.getAllPages();
     },  
     computed:{
         publishedPage(){
@@ -48,7 +49,6 @@ export default{
     },
     methods: {
         changeTheme(){
-            // this.theme = this.theme==='dark'?'light':'dark';
             let theme='light';
             if(this.theme==='light'){
                 theme = 'dark';
