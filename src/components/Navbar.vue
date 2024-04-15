@@ -3,12 +3,19 @@
         <div class="container-fluid">
             <a class="navbar-brand" href="#">My Vue</a>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li v-for="(page, index) in publishedPage" class="nav-item" :key="index">
-                    <navbar-link 
-                        :is-active="index === activePage"
-                        :page="page"
-                        @click.prevent="navLinkClick(index)"
-                    ></navbar-link>
+                <navbar-link 
+                    v-for="(page, index) in publishedPage" class="nav-item" :key="index"
+                    :page="page"
+                    :index="index"
+                    @actived="$emit('activated')"
+                ></navbar-link>
+                <li>
+                    <router-link 
+                        to="/create"    
+                        class="nav-link"
+                        active-class="active emphasize"
+                        aria-current="page" 
+                    >Create Page</router-link>
                 </li>
             </ul>
             <form class="d-flex">
@@ -25,14 +32,15 @@ export default{
     components: {
         NavbarLink
     },
-    props:[`pages`,`activePage`,`navLinkClick`],
     data() {
         return {
-            theme: 'dark'
+            theme: 'dark',
+            pages: []
         }
     },
     created(){
         this.getThemeSetting();
+        this.pages = this.$page.getAllPages();
     },  
     computed:{
         publishedPage(){
@@ -41,7 +49,6 @@ export default{
     },
     methods: {
         changeTheme(){
-            // this.theme = this.theme==='dark'?'light':'dark';
             let theme='light';
             if(this.theme==='light'){
                 theme = 'dark';
