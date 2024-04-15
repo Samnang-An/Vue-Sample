@@ -6,11 +6,18 @@
 </template>
 <script>
 export default{
+    props:['index'],
     created(){
-        this.page = this.$page.getSinglePage(this.$route.params.index);
-        this.$watch(()=>this.$route.params, (newParams,prevParams)=>{
-            this.page = this.$page.getSinglePage(newParams.index);
-        })
+        this.page = this.$page.getSinglePage(this.index);
+
+        // this.$watch(()=>this.$route.params, (newParams,prevParams)=>{
+        //     this.page = this.$page.getSinglePage(newParams.index);
+        // })
+    },
+    watch:{
+        index(newIndex,prevIndex){
+            this.page = this.$page.getSinglePage(newIndex);
+        }
     }
 }
 </script>
