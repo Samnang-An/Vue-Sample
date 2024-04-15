@@ -29,8 +29,7 @@
                         <input
                             type="text"
                             class="form-control"
-                            v-model="linkText"
-                        ></input>
+                            v-model="linkText"/>
                     </div>
                     <div class="mb-3">
                         <label for="" class="form-label">Link URL</label>
@@ -38,7 +37,7 @@
                             type="text"
                             class="form-control"
                             v-model="linkUrl"
-                        ></input>
+                        />
                     </div>
                     <div class="mb-3">
                         <div class="form-check">
@@ -58,7 +57,6 @@
             </div>
         </form>
     </div>
- <!-- @input="(e)=> pageTitle = e.target.value" -->
 </template>
 <script>
 
@@ -108,15 +106,6 @@ export default{
                 },
                 published: this.published
             });
-            // this.pageCreated({
-            //     pageTitle: this.pageTitle,
-            //     content: this.content,
-            //     link:{
-            //         text: this.linkText,
-            //         url: this.linkUrl
-            //     },
-            //     published: this.published
-            // });
             this.pageTitle='';
             this.content='';
             this.linkText='';
